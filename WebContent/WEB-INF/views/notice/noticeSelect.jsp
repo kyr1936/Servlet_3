@@ -22,6 +22,10 @@
 		<h1>Contents : ${requestScope.dto.contents }</h1>
 		<h1>Param : ${param.num }</h1>
 	</div>
-	<a href="./noticeUpdate">Go Update</a>
+	<a href="./noticeUpdate?num=${dto.num }">Go Update</a>
+	<a href="./noticeDelete?num=${dto.num }">Go Delete</a>
+	
+	
+	
 </body>
 </html>

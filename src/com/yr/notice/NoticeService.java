@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.oreilly.servlet.multipart.FileRenamePolicy;
 import com.yr.action.Action;
 import com.yr.action.ActionForward;
 import com.yr.page.SearchMakePage;
@@ -165,16 +164,66 @@ public class NoticeService implements Action {
 	@Override
 	public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
-		actionForward.setCheck(true);
-		actionForward.setPath("../WEB-INF/views/notice/noticeUpdate.jsp");
+		boolean check = true;
+		int result =0;
+		
+		NoticeDTO noticeDTO = new NoticeDTO();
+		
+		try {
+			result=noticeDAO.update(noticeDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String path="";
+		if(result>0) {
+			check=false;
+			path="./noticeSelect";
+		} else {
+			request.setAttribute("message", "Update Fail");
+			request.setAttribute("path", "./noticeSelect");
+			check=true;
+			path="../WEB-INF/views/common/result.jsp";
+		}
+	
+		
+		actionForward.setCheck(check);
+		actionForward.setPath(path);
 		return actionForward;
 	}
 
 	@Override
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward actionForward = new ActionForward();
-		actionForward.setCheck(true);
-		actionForward.setPath("");
+		int result=0;
+		boolean check=true;
+		int num=0;
+		try {
+			num = Integer.parseInt(request.getParameter("num"));
+			System.out.println("num: " + num);
+			result = noticeDAO.delete(num);
+		} catch (Exception e) {
+	
+			e.printStackTrace();
+		}
+		System.out.println("result : " + result);
+		
+		String path="";
+		if(result>0) {
+			check = false;
+			path = "./noticeList";
+		} else {
+			request.setAttribute("message", "Delete Fail");
+			request.setAttribute("path", "./noticeList");
+			check = true;
+			path="../WEB-INF/views/common/result.jsp";
+		}
+		
+	
+		
+		
+		actionForward.setCheck(check);
+		actionForward.setPath(path);
 		
 		return actionForward;
 	}
