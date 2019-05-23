@@ -74,12 +74,13 @@ public class NoticeService implements Action {
 
 	@Override
 	public ActionForward select(HttpServletRequest request, HttpServletResponse response) {
+		ActionForward actionForward = new ActionForward();
+		
 		NoticeDTO noticeDTO = null;
-		UploadDTO uploadDTO = null;
+		
 		try {
 			int num = Integer.parseInt(request.getParameter("num"));
 			noticeDTO = noticeDAO.selectOne(num);
-			uploadDTO = uploadDAO.select(num);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -88,7 +89,6 @@ public class NoticeService implements Action {
 		String path ="";
 		if(noticeDTO!=null) { 
 			request.setAttribute("dto", noticeDTO);
-			request.setAttribute("upload", uploadDTO);
 			
 			path ="../WEB-INF/views/notice/noticeSelect.jsp";
 			
@@ -101,7 +101,7 @@ public class NoticeService implements Action {
 		//글이 없으면 삭제되었거나 없는 글입니다 출력
 		
 		
-		ActionForward actionForward = new ActionForward();
+		
 		actionForward.setCheck(true);
 		actionForward.setPath(path);
 		return actionForward;
@@ -161,13 +161,11 @@ public class NoticeService implements Action {
 				noticeDTO.setNum(num);
 				result = noticeDAO.insert(noticeDTO, con);
 				
-				if(result>0) {
-					throw new Exception();
-					
-				}
 				uploadDTO.setNum(num);
 				result = uploadDAO.insert(uploadDTO, con);
-				
+				if(result< 1) {
+					throw new Exception();
+				}
 				con.commit();
 				
 			} catch (Exception e) {
