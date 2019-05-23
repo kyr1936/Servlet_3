@@ -38,19 +38,26 @@ public class MemberController extends HttpServlet {
 		ActionForward actionForward = null;
 		
 		if(command.equals("/memberCheck")) {
-			actionForward = null;
+			actionForward = memberService.check(request, response);
+			
 		} else if(command.equals("/memberJoin")) {
 			actionForward = memberService.insert(request, response);
+			
 		} else if(command.equals("/memberLogin")) {
 			actionForward = memberService.select(request, response);
+			
 		} else if(command.equals("/memberLogout")) {
 			actionForward = memberService.select(request, response);
+			
 		} else if(command.equals("/memberPage")) {
 			actionForward = memberService.list(request, response);
+			
 		} else if(command.equals("/memberUpdate")) {
 			actionForward = memberService.update(request, response);
+			
 		} else if(command.equals("/memberDelete")) {
 			actionForward = memberService.delete(request, response);
+			
 		}
 	
 		if(actionForward.isCheck()) {

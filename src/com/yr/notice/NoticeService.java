@@ -166,14 +166,12 @@ public class NoticeService implements Action {
 				int num = noticeDAO.getNum();
 				noticeDTO.setNum(num);
 				result = noticeDAO.insert(noticeDTO, con);
-				
-				if(result>0) {
-					throw new Exception();
-					
-				}
+
 				uploadDTO.setNum(num);
 				result = uploadDAO.insert(uploadDTO, con);
-				
+				if(result<1) {
+					throw new Exception();		
+				}				
 				con.commit();
 				
 			} catch (Exception e) {
@@ -205,7 +203,7 @@ public class NoticeService implements Action {
 				check=true;
 				path = "../WEB-INF/views/common/result.jsp";
 				
-			} //post 끝 
+			}
 		}
 			actionForward.setCheck(check);
 			actionForward.setPath(path);

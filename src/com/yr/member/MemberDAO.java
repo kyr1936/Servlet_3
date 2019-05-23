@@ -9,6 +9,7 @@ import com.yr.util.DBConnector;
 
 public class MemberDAO {
 
+
 	public int idCheck(String id) throws Exception {
 		int result=0; //0이면 사용가능한 id, 1이면 이미 사용 중
 		
@@ -56,8 +57,8 @@ public class MemberDAO {
 	
 	}
 	
-	public int memberJoin(MemberDTO dto) throws Exception{
-		Connection con = DBConnector.getConnect();
+	public int memberJoin(MemberDTO dto, Connection con) throws Exception{
+		
 		String sql = "insert into member values(?,?,?,?,?,?)";
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, dto.getId());
@@ -68,7 +69,7 @@ public class MemberDAO {
 		st.setInt(6, dto.getAge());
 		int result= st.executeUpdate();
 		
-		DBConnector.disConnect(con, st);
+		st.close();
 		return result;
 	}
 	

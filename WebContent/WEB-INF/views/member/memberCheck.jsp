@@ -12,6 +12,7 @@
 </head>
 <body>
 <c:import url="../temp/bootstrap.jsp"></c:import>
+
 	<div class="container" >
 		<h1>약관 동의 페이지</h1>
 			<div class="checkbox">
@@ -50,7 +51,7 @@ $(function() {
 		var c = $('#checkAll').prop('checked');
 		
 		if (c) {
-			location.href="./memberJoin.jsp";
+			location.href="./memberJoin";
 		} else {
 			alert("약관에 동의해주세요");
 		}
