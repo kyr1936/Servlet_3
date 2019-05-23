@@ -20,7 +20,11 @@
 		<h1>NoticeSelect Page</h1>
 		<h1>Title : ${requestScope.dto.title} </h1>
 		<h1>Contents : ${requestScope.dto.contents }</h1>
+		<h1>Writer : ${dto.writer }</h1>
 		<h1>Param : ${param.num }</h1>
+		<h1>Writer : ${dto.writer ne 'test' }</h1>
+		<h1>Upload : <a href="../upload/${upload.fname }">${upload.oname }</a></h1>
+		
 	</div>
 	<a href="./noticeUpdate?num=${dto.num }">Go Update</a>
 	<a href="./noticeDelete?num=${dto.num }">Go Delete</a>
