@@ -67,9 +67,9 @@ public class NoticeDAO {
 	
 	
 	//insert
-	public int insert(NoticeDTO noticeDTO)throws Exception{
+	public int insert(NoticeDTO noticeDTO, Connection con)throws Exception{
 		int result=0;
-		Connection con = DBConnector.getConnect();
+		
 		String sql ="insert into notice values(?,?,?,?, sysdate,0)";
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setInt(1, noticeDTO.getNum());
@@ -77,7 +77,7 @@ public class NoticeDAO {
 		st.setString(3, noticeDTO.getContents());
 		st.setString(4, noticeDTO.getWriter());
 		result = st.executeUpdate();
-		DBConnector.disConnect(con, st);
+		st.close();
 		return result;
 	}
 	
