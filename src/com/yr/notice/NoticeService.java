@@ -28,6 +28,12 @@ public class NoticeService implements Action {
 		noticeDAO = new NoticeDAO();
 		uploadDAO = new UploadDAO();
 	}
+	
+	@Override
+	public ActionForward check(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public ActionForward list(HttpServletRequest request, HttpServletResponse response) {

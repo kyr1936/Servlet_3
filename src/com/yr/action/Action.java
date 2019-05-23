@@ -19,6 +19,7 @@ public interface Action {
 	//delete
 	public abstract ActionForward delete(HttpServletRequest request, HttpServletResponse response);
 	
+	public abstract ActionForward check(HttpServletRequest request, HttpServletResponse response);
 	
 	
 }

@@ -37,7 +37,7 @@ public class MemberDAO {
 		return result;
 		
 	}
-	public int update(MemberDTO memberDTO) throws Exception {
+	public int memberUpdate(MemberDTO memberDTO) throws Exception {
 		Connection con = DBConnector.getConnect();
 		String sql = "update member set pw=?, name=?, phone=?, email=?, age=? where id=?";
 		PreparedStatement st = con.prepareStatement(sql);
