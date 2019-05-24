@@ -9,11 +9,20 @@
     <url-pattern>/notice/*</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>home</servlet-name>
-  	<servlet-class>com.yr.control.HomeController</servlet-class>
+    <servlet-name>home</servlet-name>
+    <servlet-class>com.yr.control.HomeController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>home</servlet-name>
-  	<url-pattern>/index.do</url-pattern>
+    <servlet-name>home</servlet-name>
+    <url-pattern>/index.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>qna</servlet-name>
+  	<servlet-class>com.yr.control.QnaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>qna</servlet-name>
+  	<url-pattern>/qna/*</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
